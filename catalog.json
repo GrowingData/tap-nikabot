@@ -1,0 +1,139 @@
+{
+  "streams": [
+    {
+      "stream": "projects",
+      "tap_stream_id": "projects",
+      "schema": {
+        "type": ["null", "object"],
+        "additionalProperties": false,
+        "selected": true,
+        "properties": {
+          "id": {
+            "type": ["string"]
+          },
+          "project_name": {
+            "type": ["string"]
+          },
+          "team_id": {
+            "type": ["string"]
+          },
+          "author": {
+            "type": ["string"]
+          },
+          "client": {
+            "type": ["null", "string"]
+          },
+          "type": {
+            "type": ["null", "string"]
+          },
+          "create_date": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          }
+        }
+      },
+      "metadata": [],
+      "key_properties": []
+    },
+    {
+      "stream": "timesheets",
+      "tap_stream_id": "timesheets",
+      "schema": {
+        "type": ["null", "object"],
+        "additionalProperties": false,
+        "selected": true,
+        "properties": {
+          "created_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "date": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "edited_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "edited_by": {
+            "type": ["null", "string"]
+          },
+          "hours": {
+            "type": ["number"]
+          },
+          "id": {
+            "type": ["string"]
+          },
+          "info": {
+            "type": ["string"]
+          },
+          "project_id": {
+            "type": ["string"]
+          },
+          "project_name": {
+            "type": ["string"]
+          },
+          "team_id": {
+            "type": ["string"]
+          },
+          "user_id": {
+            "type": ["string"]
+          }
+        }
+      },
+      "metadata": [],
+      "key_properties": []
+    },
+    {
+      "stream": "users",
+      "tap_stream_id": "users",
+      "schema": {
+        "type": ["null", "object"],
+        "additionalProperties": false,
+        "selected": true,
+        "properties": {
+          "id": {
+            "type": ["string"]
+          },
+          "name": {
+            "type": ["string"]
+          },
+          "deleted": {
+            "type": ["string"]
+          },
+          "presence": {
+            "type": ["string"]
+          },
+          "user_id": {
+            "type": ["string"]
+          },
+          "is_admin": {
+            "type": ["string"]
+          },
+          "is_nikabot_admin": {
+            "type": ["string"]
+          },
+          "tz_offset": {
+            "type": ["string"]
+          },
+          "team_id": {
+            "type": ["string"]
+          },
+          "groups": {
+            "type": ["string"]
+          },
+          "create_date": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          }
+        }
+      },
+      "metadata": [],
+      "key_properties": []
+    }
+  ]
+}

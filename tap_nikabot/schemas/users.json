@@ -1,0 +1,45 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "selected": true,
+  "properties": {
+    "id": {
+      "type": ["string"]
+    },
+    "name": {
+      "type": ["string"]
+    },
+    "deleted": {
+      "type": ["string"]
+    },
+    "presence": {
+      "type": ["string"]
+    },
+    "user_id": {
+      "type": ["string"]
+    },
+    "is_admin": {
+      "type": ["string"]
+    },
+    "is_nikabot_admin": {
+      "type": ["string"]
+    },
+    "tz_offset": {
+      "type": ["string"]
+    },
+    "team_id": {
+      "type": ["string"]
+    },
+    "groups": {
+      "type": ["string"]
+    },
+    "create_date": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    }
+  }
+}
