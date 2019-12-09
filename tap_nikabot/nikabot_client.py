@@ -31,7 +31,7 @@ class NikabotClient:
 
         return decoded
 
-    def get_paged(self, path, params = {}):
+    def get_paged(self, path, params={}):
         current_page = 0
 
         # Setup paging properly
@@ -45,34 +45,3 @@ class NikabotClient:
                 yield record
 
             params["page"] = params["page"] + 1
-
-    def get_users(self):
-        params = {"page": 0, "limit": 100}
-
-        dataframe = self.get_url("users", params)
-        return dataframe
-
-    def get_timesheets(self, start_date, end_date):
-        dateEnd = end_date.strftime("%Y%m%d")
-        dateStart = start_date.strftime("%Y%m%d")
-
-        params = {"dateStart": dateStart, "dateEnd": dateEnd, "page": 0, "limit": 100}
-        current_page = 0
-        request_df = None
-        complete_df = None
-        while request_df is None or len(request_df.index) == 100:
-            logging.info(f"NikabotClient.get_timesheets: {dateStart}-{dateEnd}")
-            params["page"] = current_page
-            request_df = self.get_url("records", params)
-
-            # No more results on this page
-            if len(request_df.index) == 0:
-                break
-
-            if complete_df is None:
-                complete_df = request_df
-            else:
-                complete_df = pd.concat([complete_df, request_df])
-
-            current_page += 1
-        return complete_df

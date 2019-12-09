@@ -25,7 +25,7 @@
       "type": ["string"]
     },
     "tz_offset": {
-      "type": ["string"]
+      "type": ["number"]
     },
     "team_id": {
       "type": ["string"]
@@ -33,7 +33,7 @@
     "groups": {
       "type": ["string"]
     },
-    "create_date": {
+    "created_at": {
       "type": ["null", "string"],
       "format": "date-time"
     },

@@ -82,10 +82,33 @@ def sync(config, state, catalog):
             LOGGER.info("Syncing stream:" + stream_id)
             if stream_id == "timesheets":
                 get_timesheets(config, stream)
-            else:
-                get_entities(config, stream)
+            # else:
+            #     get_entities(config, stream)
+            # if stream_id == "projects":
+            #     LOGGER.info("Syncing stream:" + stream_id)
+            #     get_entities(config, stream)
 
     return
+
+
+def stringify_fields(fields, stream):
+    """
+    Singer only supports "str" and "numeric" types, so a bool
+    field will break everything.
+    """
+    rec = dict()
+    for k in stream.schema.properties:
+        if k not in fields:
+            # LOGGER.warning(f"Field {k} was not found in row. Row data:\n {fields}")
+            rec[k] = ""
+            # raise (KeyError("Unknown column {k}"))
+        else:
+            v = fields[k]
+            if (isinstance(v, int) or isinstance(v, float)) and not isinstance(v, bool):
+                rec[k] = v
+            else:
+                rec[k] = str(v)
+    return rec
 
 
 def get_timesheets(config, stream):
@@ -93,7 +116,6 @@ def get_timesheets(config, stream):
     stream_id = stream.tap_stream_id
     LOGGER.info(f"get_timesheets")
     write_stream_schema(stream)
-
 
     history_days = 180
     request_interval = 30
@@ -105,18 +127,18 @@ def get_timesheets(config, stream):
     # so that we aren't requesting the enddate twice (once as the end, and once as the start)
     request_increment_delta = timedelta(days=1)
     request_interval_delta = timedelta(days=request_interval)
-    
+
     with metrics.record_counter(stream_id) as counter:
         while current < date.today():
-            params =  {
-                "dateStart":(current+request_increment_delta).strftime("%Y%m%d"),
-                "dateEnd": (current+request_interval_delta).strftime("%Y%m%d")
+            params = {
+                "dateStart": (current + request_increment_delta).strftime("%Y%m%d"),
+                "dateEnd": (current + request_interval_delta).strftime("%Y%m%d"),
             }
             extraction_time = singer.utils.now()
 
             timesheets = client.get_paged("records", params)
             for rec in timesheets:
-                singer.write_record(stream_id, rec, time_extracted=extraction_time)
+                singer.write_record(stream_id, stringify_fields(rec, stream), time_extracted=extraction_time)
                 # singer.write_bookmark(state, "users", "commits", {"since": singer.utils.strftime(extraction_time)})
                 counter.increment()
 
@@ -126,7 +148,7 @@ def get_timesheets(config, stream):
 def get_entities(config, stream):
     client = NikabotClient(config["team"], config["token"])
     stream_id = stream.tap_stream_id
-    
+
     LOGGER.info(f"get_entities: {stream_id}")
     write_stream_schema(stream)
 
@@ -135,18 +157,18 @@ def get_entities(config, stream):
     users = client.get_paged(stream_id, {})
     with metrics.record_counter(stream_id) as counter:
         for rec in users:
-            singer.write_record(stream_id, rec, time_extracted=extraction_time)
+            singer.write_record(stream_id, stringify_fields(rec, stream), time_extracted=extraction_time)
             # singer.write_bookmark(state, "users", "commits", {"since": singer.utils.strftime(extraction_time)})
             counter.increment()
+
 
 def write_stream_schema(stream):
     stream_id = stream.tap_stream_id
     stream_schema = stream.schema
     stream_metadata = stream.metadata
-    
+
     LOGGER.info(f"get_entities: {stream_id}")
     singer.write_schema(stream_id, f"{stream_schema}", stream.key_properties)
-
 
 
 @utils.handle_top_exception(LOGGER)

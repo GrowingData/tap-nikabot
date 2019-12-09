@@ -4,30 +4,50 @@
       "stream": "projects",
       "tap_stream_id": "projects",
       "schema": {
-        "type": ["null", "object"],
+        "type": [
+          "null",
+          "object"
+        ],
         "additionalProperties": false,
         "selected": true,
         "properties": {
           "id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "project_name": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "team_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "author": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "client": {
-            "type": ["null", "string"]
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "type": {
-            "type": ["null", "string"]
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "create_date": {
-            "type": ["null", "string"],
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           }
         }
@@ -39,45 +59,74 @@
       "stream": "timesheets",
       "tap_stream_id": "timesheets",
       "schema": {
-        "type": ["null", "object"],
+        "type": [
+          "null",
+          "object"
+        ],
         "additionalProperties": false,
         "selected": true,
         "properties": {
           "created_at": {
-            "type": ["null", "string"],
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           },
           "date": {
-            "type": ["null", "string"],
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           },
           "edited_at": {
-            "type": ["null", "string"],
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           },
           "edited_by": {
-            "type": ["null", "string"]
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "hours": {
-            "type": ["number"]
+            "type": [
+              "number"
+            ]
           },
           "id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "info": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "project_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "project_name": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "team_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "user_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           }
         }
       },
@@ -88,46 +137,75 @@
       "stream": "users",
       "tap_stream_id": "users",
       "schema": {
-        "type": ["null", "object"],
+        "type": [
+          "null",
+          "object"
+        ],
         "additionalProperties": false,
         "selected": true,
         "properties": {
           "id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "name": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "deleted": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "presence": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "user_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "is_admin": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "is_nikabot_admin": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "tz_offset": {
-            "type": ["string"]
+            "type": [
+              "number"
+            ]
           },
           "team_id": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
           "groups": {
-            "type": ["string"]
+            "type": [
+              "string"
+            ]
           },
-          "create_date": {
-            "type": ["null", "string"],
+          "created_at": {
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           },
           "updated_at": {
-            "type": ["null", "string"],
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           }
         }
